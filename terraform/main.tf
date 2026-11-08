@@ -15,13 +15,13 @@ data "aws_ami" "ubuntu" {
 
 resource "aws_instance" "app_server" {
   ami           = data.aws_ami.ubuntu.id
-  instance_type = "t3.micro"
+  instance_type = var.instance_type
 
   root_block_device {
     volume_type = "gp2"
   }
 
   tags = {
-    Name = "learn-terraform"
+    Name = var.instance_name
   }
 }
