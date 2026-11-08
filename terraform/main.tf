@@ -1,5 +1,5 @@
 provider "aws" {
-  region = "us-west-2"
+  region = "us-east-1"
 }
 
 data "aws_ami" "ubuntu" {
@@ -15,7 +15,11 @@ data "aws_ami" "ubuntu" {
 
 resource "aws_instance" "app_server" {
   ami           = data.aws_ami.ubuntu.id
-  instance_type = "t2.micro"
+  instance_type = "t3.micro"
+
+  root_block_device {
+    volume_type = "gp2"
+  }
 
   tags = {
     Name = "learn-terraform"
