@@ -4,6 +4,12 @@ variable "instance_name" {
   default     = "terraform-lab"
 }
 
+variable "vpc_name" {
+  description = "Value of the VPC's Name tag."
+  type        = string
+  default     = "vpc-lab"
+}
+
 variable "instance_type" {
   description = "The EC2 instance's type."
   type        = string
