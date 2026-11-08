@@ -1,0 +1,14 @@
+ 2036  terraform validate
+ 2037  terraform fmt
+ 2038  terraform plan
+
+ 2039  aws configure list
+ 2053  aws sts get-caller-identity
+ 2041  export AWS_ACCESS_KEY_ID=
+ 2042  export AWS_SECRET_ACCESS_KEY=
+ 
+ 2048  terraform apply
+ 
+ 2068  terraform state list
+       terraform state rm aws_s3_bucket.app_bucket
+ 2071  terraform show
