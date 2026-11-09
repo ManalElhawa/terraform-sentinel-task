@@ -1,0 +1,18 @@
+================ Results for policy set: <empty policy set name> ===============
+
+Sentinel Result: true
+
+This result means that all Sentinel policies passed and the protected
+behavior is allowed.
+
+1 policies evaluated.
+
+## Policy 1: enforce_tags_policy (advisory)
+
+Result: false
+
+./enforce_tags_policy.sentinel:14:1 - Rule "main"
+  Value:
+    false
+
+
