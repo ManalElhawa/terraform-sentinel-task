@@ -48,7 +48,7 @@ resource "aws_instance" "app_server" {
     volume_type = "gp2"
   }
   
-  tags = {
-    Name = var.instance_name
-  }
+#  tags = {
+#    Name = var.instance_name
+#  }
 }
