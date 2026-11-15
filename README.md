@@ -29,3 +29,5 @@ I will use this in HCP (Hashicorp Cloud Platform)
 ```
 
 - I used [Sentinel Hashicorp Tutorial](https://developer.hashicorp.com/terraform/tutorials/policy/sentinel-policy) as a reference for the enforce_ec2_size policy.
+
+- I used [restrict-aws-region.sentinel](https://github.com/hashicorp/terraform-guides/blob/master/governance/first-generation/aws/restrict-aws-region.sentinel) as a reference for the enforce_region policy
