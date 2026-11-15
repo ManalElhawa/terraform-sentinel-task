@@ -41,8 +41,8 @@ data "aws_ami" "ubuntu" {
 resource "aws_instance" "app_server" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = var.instance_type
-#  vpc_security_group_ids = [module.vpc.default_security_group_id]
-#  subnet_id              = module.vpc.private_subnets[0]
+  vpc_security_group_ids = [module.vpc.default_security_group_id]
+  subnet_id              = module.vpc.private_subnets[0]
 
   root_block_device {
     volume_type = "gp2"
