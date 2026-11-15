@@ -1,6 +1,12 @@
 # terraform-sentinel-task
 
+### Design
 
+- I have integrated HCP with this github repo (branch=HCP and directory=HCP).
+
+- Everytime there is a new commit pushed to the branch, HCP automatically trigger a new run (plan and apply).
+
+- HCP had access to create aws resources using AWS_ACCESS_KEY_ID & AWS_SECRET_ACCESS_KEY variables.
 
 ========================================
 ### Tests
@@ -12,6 +18,26 @@
 - Created an advisory snetinel policy in HCP to enforce tags.
 - Pushed commit [55b4277](https://github.com/ManalElhawa/terraform-sentinel-task/commit/55b42774168bcd6a81b24ca9038b363c801fc694) to remove the name tage from the EC2 resource in terraform file.
 - Commit triggered an automatic run in HCP to apply the new changes. Since the policy was advisory, the terraform changes were applied.
+
+#### test-03-15_Nov_2026
+
+#### test-04-15_Nov_2026
+
+
+#### test-05-15_Nov_2026
+
+
+#### test-06-15_Nov_2026
+
+
+#### test-07-15_Nov_2026
+
+
+#### test-08-15_Nov_2026
+
+
+#### test-09-15_Nov_2026
+
 
 ========================================
 ### Reference List
