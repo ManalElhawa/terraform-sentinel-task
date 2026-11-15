@@ -16,7 +16,7 @@
 ========================================
 ### Reference List
 
-- I have used the sample terraform files in the [Terraform Tutorials](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/aws-create) to create an initial AWS setup.
+- I have used the sample terraform files in the [Terraform Tutorials](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/aws-create) to create an initial AWS setup includes a VCP and EC2 instance.
 
 - For HCP setup, I have used the below tutorials:
 1. https://www.youtube.com/watch?v=n1kS8jKf70E
@@ -27,3 +27,5 @@
 Can you help me create a test sentinel policy to enforce the name tag in aws resources.
 I will use this in HCP (Hashicorp Cloud Platform)
 ```
+
+- I used [Sentinel Hashicorp Tutorial](https://developer.hashicorp.com/terraform/tutorials/policy/sentinel-policy) as a reference for the enforce_ec2_size policy.
