@@ -33,17 +33,17 @@ data "aws_ami" "amazon_linux" {
 
   filter {
     name   = "name"
-    #values = ["ubuntu/images/hvm-ssd-gp3/ubuntu-noble-24.04-amd64-server-*"]
-    values = ["al2023-ami-*-x86_64"]
+    values = ["ubuntu/images/hvm-ssd-gp3/ubuntu-noble-24.04-amd64-server-*"]
+    #values = ["al2023-ami-*-x86_64"]
   }
 
-  #owners = ["099720109477"] # Canonical
-  owners = ["137112412989"] # Amazon
+  owners = ["099720109477"] # Canonical
+  #owners = ["137112412989"] # Amazon
 }
 
 resource "aws_instance" "app_server" {
-  #ami           = data.aws_ami.ubuntu.id
-  ami           = data.aws_ami.amazon_linux.id
+  ami           = data.aws_ami.ubuntu.id
+  #ami           = data.aws_ami.amazon_linux.id
   instance_type = var.instance_type
   vpc_security_group_ids = [module.vpc.default_security_group_id]
   subnet_id              = module.vpc.private_subnets[0]
