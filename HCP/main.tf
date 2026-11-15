@@ -27,8 +27,8 @@ module "vpc" {
   }
 }
 
-#data "aws_ami" "ubuntu" {
-data "aws_ami" "amazon_linux" {
+data "aws_ami" "ubuntu" {
+#data "aws_ami" "amazon_linux" {
   most_recent = true
 
   filter {
