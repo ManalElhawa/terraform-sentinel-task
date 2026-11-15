@@ -9,6 +9,8 @@ Student Name: Manal Elhawa
 ========================================
 ### Tests
 
+All changes made to terraform code can be seen in the HCP branch (this branch was integrated with HCP).
+
 #### test-01-9_Nov_2026
 - Used HCP to plan and apply the terraform project with no sentinel policies.
 - [Evidence](./tests/test-01-9_Nov_2026/)
