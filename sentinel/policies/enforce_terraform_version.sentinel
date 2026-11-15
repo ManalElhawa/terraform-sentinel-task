@@ -1,0 +1,8 @@
+# Policy to set the minimum terraform version
+
+import "tfplan"
+import "version"
+
+main = rule {
+  version.new(tfplan.terraform_version).greater_than("1.17.0")
+}
