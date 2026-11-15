@@ -1,0 +1,65 @@
+================ Results for policy set: <empty policy set name> ===============
+
+Sentinel Result: false
+
+This result means that one or more Sentinel policies failed. More than likely,
+this was due to the discovery of violations by the main rule and other
+sub-rules. Please see the details of the policies executed below to find the
+violation(s), which is usually indicated by a rule with a false boolean value,
+or non-zero collection data.
+
+5 policies evaluated.
+
+## Policy 1: enforce_terraform_version (advisory)
+
+Result: false
+
+./enforce_terraform_version.sentinel:4:1 - Rule "main"
+  Value:
+    false
+
+## Policy 2: restrict_ami_owners (hard-mandatory)
+
+Result: false
+
+Description:
+  This policy uses the Sentinel tfstatev2 import to restrict the owners set on  all instances of the aws_ami data source in all modules
+
+./restrict_ami_owners.sentinel:23:1 - Rule "main"
+  Description:
+    Main rule passes only if no violating AMIs are found
+
+  Value:
+    false
+
+## Policy 3: enforce_tags_policy (advisory)
+
+Result: true
+
+./enforce_tags_policy.sentinel:14:1 - Rule "main"
+  Value:
+    true
+
+## Policy 4: enforce_ec2_size (advisory)
+
+Result: true
+
+./enforce_ec2_size.sentinel:18:1 - Rule "main"
+  Description:
+    Rule to check all filtered aws_instance resources
+
+  Value:
+    true
+
+## Policy 5: enforce_region (advisory)
+
+Result: true
+
+./enforce_region.sentinel:30:1 - Rule "main"
+  Description:
+    Main rule checking if all found regions are allowed
+
+  Value:
+    true
+
+
