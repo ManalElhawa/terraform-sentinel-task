@@ -1,43 +1,62 @@
 # terraform-sentinel-task
 
-### Design
+IAC Course, Terraform/Sentinel Assignment
 
-- I have integrated HCP with this github repo (branch=HCP and directory=HCP).
+Student ID: L00205331
 
-- Everytime there is a new commit pushed to the branch, HCP automatically trigger a new run (plan and apply).
-
-- HCP had access to create aws resources using AWS_ACCESS_KEY_ID & AWS_SECRET_ACCESS_KEY variables.
+Student Name: Manal Elhawa
 
 ========================================
 ### Tests
 
+All changes made to terraform code can be seen in the HCP branch (this branch was integrated with HCP).
+
 #### test-01-9_Nov_2026
 - Used HCP to plan and apply the terraform project with no sentinel policies.
+- [Evidence](./tests/test-01-9_Nov_2026/)
 
 #### test-02-9_Nov_2026
 - Created an advisory snetinel policy in HCP to enforce tags.
 - Pushed commit [55b4277](https://github.com/ManalElhawa/terraform-sentinel-task/commit/55b42774168bcd6a81b24ca9038b363c801fc694) to remove the name tage from the EC2 resource in terraform file.
 - Commit triggered an automatic run in HCP to apply the new changes. Since the policy was advisory, the terraform changes were applied.
+- [Evidence](./tests/test-02-9_Nov_2026/)
 
 #### test-03-15_Nov_2026
+- I created a hard mandatory policy "enforce_ec2_size" to only use approved instance types.
+- In this test I set the allowed instance types to be t3.small/medium/micro.
+- I modified the terraform files to create t2.nano instance, and the sentinel checks failed.
+- [Evidence](./tests/test-03:run-oSD47t5Rn5wau8KF/)
 
 #### test-04-15_Nov_2026
-
+- I updated the terraform files again to use t3.micro instance type and the sentinel checks passed.
+- [Evidence](./tests/test-04:run-FKFtjpHm1QidAwyo/)
 
 #### test-05-15_Nov_2026
-
+- I created a hard mandatory policy "enforce_region" to only use approved geographical regions.
+- In this test I set the allowed regions to be us-west-1 and us-west-2
+- And since the terraform code had the provider region set to us-east-1, the sentinel check failed.
+- [Evidence](./tests/test-05:run-GkugGz89nPctvnRZ/)
 
 #### test-06-15_Nov_2026
-
+- In this test I set the allowed regions to be us-east-1 and us-east-2
+- And since the terraform code had the provider region set to us-east-1, the sentinel check passed.
+- [Evidence](./tests/test-06:run-x7hzGTJzznSh6v8S/)
 
 #### test-07-15_Nov_2026
+- I created an advisory policy "enforce_terraform_version" to set the minimum required terraform version. I tested the policy by setting the version to 1.18.0. And the terraform version used by HCP was 1.17.1 at that time.
+- And created a hard mandatory policy "enforce_ami_owner"  to make sure only AMIs created by trusted sources can be used (in that case canonical). And tested it by using Amazon Linux image in the terraform files.
+- Both polices failed in that run.
+- [Evidence](./tests/test-07:run-TCRyU4Y4baBA1csx/)
 
 
 #### test-08-15_Nov_2026
-
+- I removed the tags from the EC2 instance configurations to test the "enforce-aws-name-tag" policy.
+- Since the the policy was advisory, the policy chcks failed but resources were applied as planned.
+- [Evidence](./tests/test-08:run-TFonaLEAGpqGVHkt/)
 
 #### test-09-15_Nov_2026
-
+- Tested all the reources against the five policies and the sentinel policies checks passed.
+- [Evidence](./tests/test-09:run-WAAtJnEU61YQPeMo/)
 
 ========================================
 ### Reference List
