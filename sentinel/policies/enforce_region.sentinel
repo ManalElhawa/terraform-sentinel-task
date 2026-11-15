@@ -1,0 +1,35 @@
+import "tfconfig"
+import "tfplan"
+import "strings"
+
+# Allowed Regions
+allowed_regions = [
+	"us-east-1",
+	"us-east-2",
+
+]
+
+# Collect region values from AWS provider aliases in the root module
+region_values = []
+
+aws_provider = tfconfig.providers["aws"] else {}
+aliases = aws_provider["alias"] else {}
+
+for aliases as _, data {
+	region = data.config.region else ""
+	
+	if region matches "\\$\\{var\\.(.*)\\}" {
+		# Extract variable name and get its value from tfplan
+		var_name = strings.trim_suffix(strings.trim_prefix(region, "${var."), "}")
+		region_values += [tfplan.variables[var_name]]
+	} else if region is not "" {
+		region_values += [region]
+	}
+}
+
+# Main rule checking if all found regions are allowed
+main = rule {
+	all region_values as rv {
+		rv in allowed_regions
+	}
+}

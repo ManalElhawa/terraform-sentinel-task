@@ -1,0 +1,21 @@
+import "strings"
+import "tfplan/v2" as tfplan
+
+aws_resources_to_create_or_update = filter tfplan.resource_changes as _, resource {
+  resource.mode is "managed" and
+  strings.has_prefix(resource.type, "aws_") and
+  ("create" in resource.change.actions or "update" in resource.change.actions)
+}
+
+taggable_aws_resources = filter aws_resources_to_create_or_update as _, resource {
+  "tags" in keys(resource.change.after)
+}
+
+main = rule {
+  all taggable_aws_resources as _, resource {
+    resource.change.after.tags is not null and
+    "Name" in keys(resource.change.after.tags) and
+    resource.change.after.tags["Name"] is not null and
+    resource.change.after.tags["Name"] != ""
+  }
+}
