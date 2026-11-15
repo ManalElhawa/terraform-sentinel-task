@@ -33,6 +33,8 @@ Restricting AMI ownership (e.g., to trusted publishers like Canonical) to preven
 
 - Sentinel can only prevent or advise when creating new resources or update existing ones using terraform for example. It can't detect changes made to the resources manually.
 
+- Teams managing the infrastructure through terraform, should be different from the team managing the sentinel policies.
+
 ### Limitations
 
 - I don't have a free tier aws account, so I did all the tests in a sandbox environment initiated from AWS academy. Each session is available fro 3 hours only and some AWS resources are not available to use. And I only had access to us-east-1 region.
