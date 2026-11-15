@@ -1,0 +1,25 @@
+# This policy uses the Sentinel tfstatev2 import to restrict the owners set on
+# all instances of the aws_ami data source in all modules
+
+import "tfstate/v2" as tfstate
+
+# Allowed Owners includes my AMIs and Canonical for ubuntu
+allowed_owners = ["self", "099720109477"]
+
+# Get all aws_ami data sources from the state
+allAMIs = filter tfstate.resources as _, r {
+	r.type is "aws_ami" and r.mode is "data"
+}
+
+# Find any AMIs where owners contain items outside the allowed list
+violatingAMIs = filter allAMIs as _, ami {
+	# Directly evaluate r.values.owners with a fallback to [] inside the any loop
+	any (ami.values.owners else []) as owner {
+		not (owner in allowed_owners)
+	}
+}
+
+# Main rule passes only if no violating AMIs are found
+main = rule {
+	length(violatingAMIs) is 0
+}

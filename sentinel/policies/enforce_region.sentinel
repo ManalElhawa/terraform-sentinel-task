@@ -6,7 +6,6 @@ import "strings"
 allowed_regions = [
 	"us-east-1",
 	"us-east-2",
-
 ]
 
 # Collect region values from AWS provider aliases in the root module
