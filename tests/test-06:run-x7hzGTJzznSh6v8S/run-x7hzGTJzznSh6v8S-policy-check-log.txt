@@ -1,0 +1,40 @@
+================ Results for policy set: <empty policy set name> ===============
+
+Sentinel Result: true
+
+This result means that all Sentinel policies passed and the protected
+behavior is allowed.
+
+3 policies evaluated.
+
+## Policy 1: enforce_tags_policy (advisory)
+
+Result: true
+
+./enforce_tags_policy.sentinel:14:1 - Rule "main"
+  Value:
+    true
+
+## Policy 2: enforce_ec2_size (advisory)
+
+Result: true
+
+./enforce_ec2_size.sentinel:18:1 - Rule "main"
+  Description:
+    Rule to check all filtered aws_instance resources
+
+  Value:
+    true
+
+## Policy 3: enforce_region (hard-mandatory)
+
+Result: true
+
+./enforce_region.sentinel:30:1 - Rule "main"
+  Description:
+    Main rule checking if all found regions are allowed
+
+  Value:
+    true
+
+
